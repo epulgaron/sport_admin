@@ -1,0 +1,36 @@
+.ant-notification{
+  z-index: 99999!important;
+}
+/*Customize*/
+
+/*Header grid*/
+
+.ant-table-thead > tr > th {
+  text-align: center!important;
+  padding: 15px!important;
+}
+.ant-table-placeholder{
+  height:25rem!important;
+}
+/*.ant-table-content{*/
+/*  height: 25rem;*/
+/*  background-color: white;*/
+/*}*/
+.ant-table-row,.ant-table-wrapper{
+  background-color: white;
+}
+
+/*Container*/
+.az-content-body>div{
+  width: 100%;
+}
+.anticon{
+  width: 15px;
+}
+.ant-btn .anticon.anticon-plus > svg, .ant-btn .anticon.anticon-delete > svg {
+  margin-bottom: 6px;
+}
+
+.ant-table-tbody>tr>td, .ant-table-thead>tr>th {
+   padding: 5px 16px !important;
+}
