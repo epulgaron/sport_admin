@@ -197,41 +197,41 @@
 </template>
 
 <script>
-import Tests from "../../../../../entities/models/modules/managment/tests.model";
-import * as utils from "../../../../../entities/utils/utils";
-import * as mb from "../../../../../entities/models"
-  import Status_form from '../../../types/status/form/status_form';
-  import Flows_form from '../../../types/flows/form/flows_form';
-  import Schools_form from '../../../entities/schools/form/schools_form';
-  import Sports_form from '../../../types/sports/form/sports_form';
-  import Types_form from '../../../types/types/form/types_form';
+import Tests from '../../../../../entities/models/modules/managment/tests.model'
+import * as utils from '../../../../../entities/utils/utils'
+import * as mb from '../../../../../entities/models'
+import Status_form from '../../../types/status/form/status_form'
+import Flows_form from '../../../types/flows/form/flows_form'
+import Schools_form from '../../../entities/schools/form/schools_form'
+import Sports_form from '../../../types/sports/form/sports_form'
+import Types_form from '../../../types/types/form/types_form'
 
 export default {
-  name: "tests_form",
+  name: 'tests_form',
   inject: {
-      close_modal: { default: ()=>{} },
-      load_data: {default: () => {} }
+    close_modal: { default: () => {} },
+    load_data: {default: () => {} }
   },
   props: {
     model: {
       type: Object,
       default: () => {}
     },
-      modal: {
-        type: Boolean,
-        default: false
-      },
+    modal: {
+      type: Boolean,
+      default: false
+    },
     popoverPlacement: {
       type: String,
-      default: "bottomLeft"
+      default: 'bottomLeft'
     }
   },
   validations: mb.statics('Tests').validations,
-  data() {
+  data () {
     return {
       loading: false,
-      mb,      // This property is for load static or instance class
-      tests: mb.instance( 'Tests'),
+      mb, // This property is for load static or instance class
+      tests: mb.instance('Tests'),
       showModalCreatestatus: false,
       status_list: [],
       showModalCreateflow: false,
@@ -241,127 +241,122 @@ export default {
       showModalCreatesport: false,
       sports_list: [],
       showModalCreatetype: false,
-      types_list: [],
-    };
+      types_list: []
+    }
   },
   computed: {
-    testsFeedbacks() {
-      return mb.statics('Tests').feedbacks;
+    testsFeedbacks () {
+      return mb.statics('Tests').feedbacks
     },
-    button_text() {
-      return this.tests.get_id() ? "Actualizar" : "Añadir";
-    },
+    button_text () {
+      return this.tests.get_id() ? 'Actualizar' : 'Añadir'
+    }
   },
 
-  mounted: function() {
-    this.tests = mb.instance( 'Tests',this.model);
-
+  mounted: function () {
+    this.tests = mb.instance('Tests', this.model)
   },
   components: {
 
-       Status_form,
-       Flows_form,
-       Schools_form,
-       Sports_form,
-       Types_form,
-             },
+    Status_form,
+    Flows_form,
+    Schools_form,
+    Sports_form,
+    Types_form
+  },
   methods: {
-      openModalCreatestatus() {
-        this.showModalCreatestatus = true;
-      },
-      statusAdded(refresh) {
-        this.showModalCreatestatus = false;
-        refresh?this.refreshstatus():'';
-      },
-      async refreshstatus() {
-        this.loading = true;
-        await this.$refs.select_status.load();
-        this.loading = false;
-      },
-      openModalCreateflow() {
-        this.showModalCreateflow = true;
-      },
-      flowAdded(refresh) {
-        this.showModalCreateflow = false;
-        refresh?this.refreshflow():'';
-      },
-      async refreshflow() {
-        this.loading = true;
-        await this.$refs.select_flow.load();
-        this.loading = false;
-      },
-      openModalCreateschool() {
-        this.showModalCreateschool = true;
-      },
-      schoolAdded(refresh) {
-        this.showModalCreateschool = false;
-        refresh?this.refreshschool():'';
-      },
-      async refreshschool() {
-        this.loading = true;
-        await this.$refs.select_school.load();
-        this.loading = false;
-      },
-      openModalCreatesport() {
-        this.showModalCreatesport = true;
-      },
-      sportAdded(refresh) {
-        this.showModalCreatesport = false;
-        refresh?this.refreshsport():'';
-      },
-      async refreshsport() {
-        this.loading = true;
-        await this.$refs.select_sport.load();
-        this.loading = false;
-      },
-      openModalCreatetype() {
-        this.showModalCreatetype = true;
-      },
-      typeAdded(refresh) {
-        this.showModalCreatetype = false;
-        refresh?this.refreshtype():'';
-      },
-      async refreshtype() {
-        this.loading = true;
-        await this.$refs.select_type.load();
-        this.loading = false;
-      },
-      cancel(){
-        if (!this.model) {
-          this.$emit('close_modal',false)
-        } else {
-        this.modal?this.close_modal(null,false):this.$router.push({name: 'tests_list'})
-       }
-      },
-    save_model(and_new=false) {
+    openModalCreatestatus () {
+      this.showModalCreatestatus = true
+    },
+    statusAdded (refresh) {
+      this.showModalCreatestatus = false
+      refresh ? this.refreshstatus() : ''
+    },
+    async refreshstatus () {
+      this.loading = true
+      await this.$refs.select_status.load()
+      this.loading = false
+    },
+    openModalCreateflow () {
+      this.showModalCreateflow = true
+    },
+    flowAdded (refresh) {
+      this.showModalCreateflow = false
+      refresh ? this.refreshflow() : ''
+    },
+    async refreshflow () {
+      this.loading = true
+      await this.$refs.select_flow.load()
+      this.loading = false
+    },
+    openModalCreateschool () {
+      this.showModalCreateschool = true
+    },
+    schoolAdded (refresh) {
+      this.showModalCreateschool = false
+      refresh ? this.refreshschool() : ''
+    },
+    async refreshschool () {
+      this.loading = true
+      await this.$refs.select_school.load()
+      this.loading = false
+    },
+    openModalCreatesport () {
+      this.showModalCreatesport = true
+    },
+    sportAdded (refresh) {
+      this.showModalCreatesport = false
+      refresh ? this.refreshsport() : ''
+    },
+    async refreshsport () {
+      this.loading = true
+      await this.$refs.select_sport.load()
+      this.loading = false
+    },
+    openModalCreatetype () {
+      this.showModalCreatetype = true
+    },
+    typeAdded (refresh) {
+      this.showModalCreatetype = false
+      refresh ? this.refreshtype() : ''
+    },
+    async refreshtype () {
+      this.loading = true
+      await this.$refs.select_type.load()
+      this.loading = false
+    },
+    cancel () {
+      if (!this.model) {
+        this.$emit('close_modal', false)
+      } else {
+        this.modal ? this.close_modal(null, false) : this.$router.push({name: 'tests_list'})
+      }
+    },
+    save_model (and_new = false) {
       if (this.$refs.form.validate()) {
-        this.loading = true;
-        const accion=this.tests.get_id() ? "actualizado" : "añadido";
+        this.loading = true
+        const accion = this.tests.get_id() ? 'actualizado' : 'añadido'
         this.tests
           .save()
           .then((response) => {
-            if(utils.process_response(response,accion)) {
+            if (utils.process_response(response, accion)) {
               if (!this.model && !and_new && this.modal) {
-
-                  this.$emit('close_modal',true)
-                  return;
-               }
-                else
-                   !and_new?this.modal?this.close_modal(null,true):this.$router.push({name: 'tests_list'}):this.tests=mb.instance('Tests');this.load_data();this.$refs.form.vobject.$reset()
+                this.$emit('close_modal', true)
+                return
+              } else { !and_new ? this.modal ? this.close_modal(null, true) : this.$router.push({name: 'tests_list'}) : this.tests = mb.instance('Tests') } this.load_data(); this.$refs.form.vobject.$reset()
             }
-            this.loading = false;
+            this.loading = false
           })
           .catch((error) => {
-            this.loading = false;
-            utils.process_error(error);
-          });
+            this.loading = false
+            utils.process_error(error)
+          })
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
 @import "tests_form.css";
 </style>
-

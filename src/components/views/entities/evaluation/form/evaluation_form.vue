@@ -185,41 +185,41 @@
 </template>
 
 <script>
-import Evaluation from "../../../../../entities/models/modules/managment/evaluation.model";
-import * as utils from "../../../../../entities/utils/utils";
-import * as mb from "../../../../../entities/models"
-  import Teachers_form from '../../../entities/teachers/form/teachers_form';
-  import Tests_form from '../../tests/form/tests_form';
-  import Levels_form from '../../../types/levels/form/levels_form';
-  import Sessions_form from '../../../entities/sessions/form/sessions_form';
-  import Students_form from '../../../entities/students/form/students_form';
+import Evaluation from '../../../../../entities/models/modules/entities/evaluation.model'
+import * as utils from '../../../../../entities/utils/utils'
+import * as mb from '../../../../../entities/models'
+import Teachers_form from '../../../entities/teachers/form/teachers_form'
+import Tests_form from '../../../managment/tests/form/tests_form'
+import Levels_form from '../../../types/levels/form/levels_form'
+import Sessions_form from '../../../entities/sessions/form/sessions_form'
+import Students_form from '../../../entities/students/form/students_form'
 
 export default {
-  name: "evaluation_form",
+  name: 'evaluation_form',
   inject: {
-      close_modal: { default: ()=>{} },
-      load_data: {default: () => {} }
+    close_modal: { default: () => {} },
+    load_data: {default: () => {} }
   },
   props: {
     model: {
       type: Object,
       default: () => {}
     },
-      modal: {
-        type: Boolean,
-        default: false
-      },
+    modal: {
+      type: Boolean,
+      default: false
+    },
     popoverPlacement: {
       type: String,
-      default: "bottomLeft"
+      default: 'bottomLeft'
     }
   },
   validations: mb.statics('Evaluation').validations,
-  data() {
+  data () {
     return {
       loading: false,
-      mb,      // This property is for load static or instance class
-      evaluation: mb.instance( 'Evaluation'),
+      mb, // This property is for load static or instance class
+      evaluation: mb.instance('Evaluation'),
       showModalCreateteacher: false,
       teachers_list: [],
       showModalCreatetest: false,
@@ -229,127 +229,122 @@ export default {
       showModalCreatesession: false,
       sessions_list: [],
       showModalCreatestudent: false,
-      students_list: [],
-    };
+      students_list: []
+    }
   },
   computed: {
-    evaluationFeedbacks() {
-      return mb.statics('Evaluation').feedbacks;
+    evaluationFeedbacks () {
+      return mb.statics('Evaluation').feedbacks
     },
-    button_text() {
-      return this.evaluation.get_id() ? "Actualizar" : "Añadir";
-    },
+    button_text () {
+      return this.evaluation.get_id() ? 'Actualizar' : 'Añadir'
+    }
   },
 
-  mounted: function() {
-    this.evaluation = mb.instance( 'Evaluation',this.model);
-
+  mounted: function () {
+    this.evaluation = mb.instance('Evaluation', this.model)
   },
   components: {
 
-       Teachers_form,
-       Tests_form,
-       Levels_form,
-       Sessions_form,
-       Students_form,
-             },
+    Teachers_form,
+    Tests_form,
+    Levels_form,
+    Sessions_form,
+    Students_form
+  },
   methods: {
-      openModalCreateteacher() {
-        this.showModalCreateteacher = true;
-      },
-      teacherAdded(refresh) {
-        this.showModalCreateteacher = false;
-        refresh?this.refreshteacher():'';
-      },
-      async refreshteacher() {
-        this.loading = true;
-        await this.$refs.select_teacher.load();
-        this.loading = false;
-      },
-      openModalCreatetest() {
-        this.showModalCreatetest = true;
-      },
-      testAdded(refresh) {
-        this.showModalCreatetest = false;
-        refresh?this.refreshtest():'';
-      },
-      async refreshtest() {
-        this.loading = true;
-        await this.$refs.select_test.load();
-        this.loading = false;
-      },
-      openModalCreatelevel() {
-        this.showModalCreatelevel = true;
-      },
-      levelAdded(refresh) {
-        this.showModalCreatelevel = false;
-        refresh?this.refreshlevel():'';
-      },
-      async refreshlevel() {
-        this.loading = true;
-        await this.$refs.select_level.load();
-        this.loading = false;
-      },
-      openModalCreatesession() {
-        this.showModalCreatesession = true;
-      },
-      sessionAdded(refresh) {
-        this.showModalCreatesession = false;
-        refresh?this.refreshsession():'';
-      },
-      async refreshsession() {
-        this.loading = true;
-        await this.$refs.select_session.load();
-        this.loading = false;
-      },
-      openModalCreatestudent() {
-        this.showModalCreatestudent = true;
-      },
-      studentAdded(refresh) {
-        this.showModalCreatestudent = false;
-        refresh?this.refreshstudent():'';
-      },
-      async refreshstudent() {
-        this.loading = true;
-        await this.$refs.select_student.load();
-        this.loading = false;
-      },
-      cancel(){
-        if (!this.model) {
-          this.$emit('close_modal',false)
-        } else {
-        this.modal?this.close_modal(null,false):this.$router.push({name: 'evaluation_list'})
-       }
-      },
-    save_model(and_new=false) {
+    openModalCreateteacher () {
+      this.showModalCreateteacher = true
+    },
+    teacherAdded (refresh) {
+      this.showModalCreateteacher = false
+      refresh ? this.refreshteacher() : ''
+    },
+    async refreshteacher () {
+      this.loading = true
+      await this.$refs.select_teacher.load()
+      this.loading = false
+    },
+    openModalCreatetest () {
+      this.showModalCreatetest = true
+    },
+    testAdded (refresh) {
+      this.showModalCreatetest = false
+      refresh ? this.refreshtest() : ''
+    },
+    async refreshtest () {
+      this.loading = true
+      await this.$refs.select_test.load()
+      this.loading = false
+    },
+    openModalCreatelevel () {
+      this.showModalCreatelevel = true
+    },
+    levelAdded (refresh) {
+      this.showModalCreatelevel = false
+      refresh ? this.refreshlevel() : ''
+    },
+    async refreshlevel () {
+      this.loading = true
+      await this.$refs.select_level.load()
+      this.loading = false
+    },
+    openModalCreatesession () {
+      this.showModalCreatesession = true
+    },
+    sessionAdded (refresh) {
+      this.showModalCreatesession = false
+      refresh ? this.refreshsession() : ''
+    },
+    async refreshsession () {
+      this.loading = true
+      await this.$refs.select_session.load()
+      this.loading = false
+    },
+    openModalCreatestudent () {
+      this.showModalCreatestudent = true
+    },
+    studentAdded (refresh) {
+      this.showModalCreatestudent = false
+      refresh ? this.refreshstudent() : ''
+    },
+    async refreshstudent () {
+      this.loading = true
+      await this.$refs.select_student.load()
+      this.loading = false
+    },
+    cancel () {
+      if (!this.model) {
+        this.$emit('close_modal', false)
+      } else {
+        this.modal ? this.close_modal(null, false) : this.$router.push({name: 'evaluation_list'})
+      }
+    },
+    save_model (and_new = false) {
       if (this.$refs.form.validate()) {
-        this.loading = true;
-        const accion=this.evaluation.get_id() ? "actualizado" : "añadido";
+        this.loading = true
+        const accion = this.evaluation.get_id() ? 'actualizado' : 'añadido'
         this.evaluation
           .save()
           .then((response) => {
-            if(utils.process_response(response,accion)) {
+            if (utils.process_response(response, accion)) {
               if (!this.model && !and_new && this.modal) {
-
-                  this.$emit('close_modal',true)
-                  return;
-               }
-                else
-                   !and_new?this.modal?this.close_modal(null,true):this.$router.push({name: 'evaluation_list'}):this.evaluation=mb.instance('Evaluation');this.load_data();this.$refs.form.vobject.$reset()
+                this.$emit('close_modal', true)
+                return
+              } else { !and_new ? this.modal ? this.close_modal(null, true) : this.$router.push({name: 'evaluation_list'}) : this.evaluation = mb.instance('Evaluation') } this.load_data(); this.$refs.form.vobject.$reset()
             }
-            this.loading = false;
+            this.loading = false
           })
           .catch((error) => {
-            this.loading = false;
-            utils.process_error(error);
-          });
+            this.loading = false
+            utils.process_error(error)
+          })
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
 @import "evaluation_form.css";
 </style>
-
