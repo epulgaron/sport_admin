@@ -48,7 +48,7 @@ export default class Error_level extends BaseModel {
       error_level: {
         error_level_name: {
           required,
-          integer
+          maxLength: maxLength(100)
         },
         error_level_eval: {
           required,
@@ -76,15 +76,15 @@ export default class Error_level extends BaseModel {
 
   static columns = [
     {
-      title: 'Error_level_name',
+      title: 'Name',
       dataIndex: 'error_level_name',
       align: 'center',
       key: 'error_level_name',
 
-      sorter: (a, b) => a.error_level_name - b.error_level_name
+      sorter: (a, b) => (a.error_level_name > b.error_level_name) - (a.error_level_name < b.error_level_name)
     },
     {
-      title: 'Error_level_eval',
+      title: 'Evaluation',
       dataIndex: 'error_level_eval',
       align: 'center',
       key: 'error_level_eval',
@@ -108,7 +108,7 @@ export default class Error_level extends BaseModel {
       sorter: (a, b) => a.sport && b.sport ? (a.sport.sport_name > b.sport.sport_name) - (a.sport.sport_name < b.sport.sport_name) : 0
     },
     {
-      title: 'Acciones',
+      title: 'Actions',
       key: 'action_elements',
       fixed: 'right',
       scopedSlots: {
