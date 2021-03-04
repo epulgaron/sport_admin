@@ -163,147 +163,147 @@ export default new Router({
             props: {page: 1}
         },
        {
-            path: '/managment/content_error_list_list',
+            path: '/management/content_error_list_list',
             name: 'content_error_list_list',
-            component: require('../../components/views/managment/content_error_list/list/content_error_list_list').default,
+            component: require('../../components/views/management/content_error_list/list/content_error_list_list').default,
             props: {page: 1}
         },
        {
-            path: '/managment/content_error_list_form',
+            path: '/management/content_error_list_form',
             name: 'content_error_list_form',
-            component: require('../../components/views/managment/content_error_list/form/content_error_list_form').default,
+            component: require('../../components/views/management/content_error_list/form/content_error_list_form').default,
             props: {page: 1}
         },
        {
-            path: '/managment/content_level_list_list',
+            path: '/management/content_level_list_list',
             name: 'content_level_list_list',
-            component: require('../../components/views/managment/content_level_list/list/content_level_list_list').default,
+            component: require('../../components/views/management/content_level_list/list/content_level_list_list').default,
             props: {page: 1}
         },
        {
-            path: '/managment/content_level_list_form',
+            path: '/management/content_level_list_form',
             name: 'content_level_list_form',
-            component: require('../../components/views/managment/content_level_list/form/content_level_list_form').default,
+            component: require('../../components/views/management/content_level_list/form/content_level_list_form').default,
             props: {page: 1}
         },
        {
-            path: '/managment/error_level_list_list',
+            path: '/management/error_level_list_list',
             name: 'error_level_list_list',
-            component: require('../../components/views/managment/error_level_list/list/error_level_list_list').default,
+            component: require('../../components/views/management/error_level_list/list/error_level_list_list').default,
             props: {page: 1}
         },
        {
-            path: '/managment/error_level_list_form',
+            path: '/management/error_level_list_form',
             name: 'error_level_list_form',
-            component: require('../../components/views/managment/error_level_list/form/error_level_list_form').default,
+            component: require('../../components/views/management/error_level_list/form/error_level_list_form').default,
             props: {page: 1}
         },
        {
-            path: '/managment/principal_school_list_list',
+            path: '/management/principal_school_list_list',
             name: 'principal_school_list_list',
-            component: require('../../components/views/managment/principal_school_list/list/principal_school_list_list').default,
+            component: require('../../components/views/management/principal_school_list/list/principal_school_list_list').default,
             props: {page: 1}
         },
        {
-            path: '/managment/principal_school_list_form',
+            path: '/management/principal_school_list_form',
             name: 'principal_school_list_form',
-            component: require('../../components/views/managment/principal_school_list/form/principal_school_list_form').default,
+            component: require('../../components/views/management/principal_school_list/form/principal_school_list_form').default,
             props: {page: 1}
         },
        {
-            path: '/managment/session_level_list_list',
+            path: '/management/session_level_list_list',
             name: 'session_level_list_list',
-            component: require('../../components/views/managment/session_level_list/list/session_level_list_list').default,
+            component: require('../../components/views/management/session_level_list/list/session_level_list_list').default,
             props: {page: 1}
         },
        {
-            path: '/managment/session_level_list_form',
+            path: '/management/session_level_list_form',
             name: 'session_level_list_form',
-            component: require('../../components/views/managment/session_level_list/form/session_level_list_form').default,
+            component: require('../../components/views/management/session_level_list/form/session_level_list_form').default,
             props: {page: 1}
         },
        {
-            path: '/managment/sport_student_list_list',
+            path: '/management/sport_student_list_list',
             name: 'sport_student_list_list',
-            component: require('../../components/views/managment/sport_student_list/list/sport_student_list_list').default,
+            component: require('../../components/views/management/sport_student_list/list/sport_student_list_list').default,
             props: {page: 1}
         },
        {
-            path: '/managment/sport_student_list_form',
+            path: '/management/sport_student_list_form',
             name: 'sport_student_list_form',
-            component: require('../../components/views/managment/sport_student_list/form/sport_student_list_form').default,
+            component: require('../../components/views/management/sport_student_list/form/sport_student_list_form').default,
             props: {page: 1}
         },
        {
-            path: '/managment/teacher_sport_list_list',
+            path: '/management/teacher_sport_list_list',
             name: 'teacher_sport_list_list',
-            component: require('../../components/views/managment/teacher_sport_list/list/teacher_sport_list_list').default,
+            component: require('../../components/views/management/teacher_sport_list/list/teacher_sport_list_list').default,
             props: {page: 1}
         },
        {
-            path: '/managment/teacher_sport_list_form',
+            path: '/management/teacher_sport_list_form',
             name: 'teacher_sport_list_form',
-            component: require('../../components/views/managment/teacher_sport_list/form/teacher_sport_list_form').default,
+            component: require('../../components/views/management/teacher_sport_list/form/teacher_sport_list_form').default,
             props: {page: 1}
         },
        {
-            path: '/managment/test_level_list_list',
+            path: '/management/test_level_list_list',
             name: 'test_level_list_list',
-            component: require('../../components/views/managment/test_level_list/list/test_level_list_list').default,
+            component: require('../../components/views/management/test_level_list/list/test_level_list_list').default,
             props: {page: 1}
         },
        {
-            path: '/managment/test_level_list_form',
+            path: '/management/test_level_list_form',
             name: 'test_level_list_form',
-            component: require('../../components/views/managment/test_level_list/form/test_level_list_form').default,
+            component: require('../../components/views/management/test_level_list/form/test_level_list_form').default,
             props: {page: 1}
         },
        {
-            path: '/managment/test_session_list_list',
+            path: '/management/test_session_list_list',
             name: 'test_session_list_list',
-            component: require('../../components/views/managment/test_session_list/list/test_session_list_list').default,
+            component: require('../../components/views/management/test_session_list/list/test_session_list_list').default,
             props: {page: 1}
         },
        {
-            path: '/managment/test_session_list_form',
+            path: '/management/test_session_list_form',
             name: 'test_session_list_form',
-            component: require('../../components/views/managment/test_session_list/form/test_session_list_form').default,
+            component: require('../../components/views/management/test_session_list/form/test_session_list_form').default,
             props: {page: 1}
         },
        {
-            path: '/managment/test_student_list_list',
+            path: '/management/test_student_list_list',
             name: 'test_student_list_list',
-            component: require('../../components/views/managment/test_student_list/list/test_student_list_list').default,
+            component: require('../../components/views/management/test_student_list/list/test_student_list_list').default,
             props: {page: 1}
         },
        {
-            path: '/managment/test_student_list_form',
+            path: '/management/test_student_list_form',
             name: 'test_student_list_form',
-            component: require('../../components/views/managment/test_student_list/form/test_student_list_form').default,
+            component: require('../../components/views/management/test_student_list/form/test_student_list_form').default,
             props: {page: 1}
         },
        {
-            path: '/managment/test_teacher_list_list',
+            path: '/management/test_teacher_list_list',
             name: 'test_teacher_list_list',
-            component: require('../../components/views/managment/test_teacher_list/list/test_teacher_list_list').default,
+            component: require('../../components/views/management/test_teacher_list/list/test_teacher_list_list').default,
             props: {page: 1}
         },
        {
-            path: '/managment/test_teacher_list_form',
+            path: '/management/test_teacher_list_form',
             name: 'test_teacher_list_form',
-            component: require('../../components/views/managment/test_teacher_list/form/test_teacher_list_form').default,
+            component: require('../../components/views/management/test_teacher_list/form/test_teacher_list_form').default,
             props: {page: 1}
         },
        {
-            path: '/managment/tests_list',
+            path: '/management/tests_list',
             name: 'tests_list',
-            component: require('../../components/views/managment/tests/list/tests_list').default,
+            component: require('../../components/views/management/tests/list/tests_list').default,
             props: {page: 1}
         },
        {
-            path: '/managment/tests_form',
+            path: '/management/tests_form',
             name: 'tests_form',
-            component: require('../../components/views/managment/tests/form/tests_form').default,
+            component: require('../../components/views/management/tests/form/tests_form').default,
             props: {page: 1}
         },
        {

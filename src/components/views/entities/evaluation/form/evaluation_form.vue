@@ -189,7 +189,7 @@ import Evaluation from '../../../../../entities/models/modules/entities/evaluati
 import * as utils from '../../../../../entities/utils/utils'
 import * as mb from '../../../../../entities/models'
 import Teachers_form from '../../../entities/teachers/form/teachers_form'
-import Tests_form from '../../../managment/tests/form/tests_form'
+import Tests_form from '../../../management/tests/form/tests_form'
 import Levels_form from '../../../types/levels/form/levels_form'
 import Sessions_form from '../../../entities/sessions/form/sessions_form'
 import Students_form from '../../../entities/students/form/students_form'
