@@ -29,12 +29,12 @@ export default class Evaluation extends BaseModel {
          super()
          if (attributes != null) {
            this.id_eval = attributes.id_eval || undefined
-           this.test_id = attributes.test_id || null
-           this.level_id = attributes.level_id || null
-           this.session_id = attributes.session_id || null
-           this.student_id = attributes.student_id || null
-           this.teacher_id = attributes.teacher_id || null
-           this.score = attributes.score || null
+           this.test_id = attributes.test_id || ''
+           this.level_id = attributes.level_id || ''
+           this.session_id = attributes.session_id || ''
+           this.student_id = attributes.student_id || ''
+           this.teacher_id = attributes.teacher_id || ''
+           this.score = attributes.score || ''
          }
        }
 

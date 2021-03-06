@@ -129,36 +129,36 @@
 </template>
 
 <script>
-import * as utils from "../../../../../entities/utils/utils";
-import * as mb from "../../../../../entities/models";
-import action_buttons from "../../../../shared/table/action_buttons/action_buttons";
-import pagination_functions from "../../../../shared/table/pagination/pagination_options";
-import vantdpagination from "../../../../shared/table/pagination/antd_pagination";
-import schools_form from "../form/schools_form";
+import * as utils from '../../../../../entities/utils/utils'
+import * as mb from '../../../../../entities/models'
+import action_buttons from '../../../../shared/table/action_buttons/action_buttons'
+import pagination_functions from '../../../../shared/table/pagination/pagination_options'
+import vantdpagination from '../../../../shared/table/pagination/antd_pagination'
+import schools_form from '../form/schools_form'
 
 export default {
-  name: "schools_list",
-    provide: function(){
-      return{
-        close_modal: this.onCloseModal,
-        load_data: this.load_data
-      }
-    },
-  data() {
+  name: 'schools_list',
+  provide: function () {
+    return {
+      close_modal: this.onCloseModal,
+      load_data: this.load_data
+    }
+  },
+  data () {
     return {
       data: [],
       self: null,
       schools_list: [],
       filter: null,
-      columns: mb.statics('Schools').columns,
+      columns: mb.statics('Schools').show_columns('["school_address2","school_city","school_state","country.country_acr","school_zip_code"]', false),
       loading: false,
-      text_select: "Select All",
+      text_select: 'Select All',
       selectedRowKeys: [],
       pagination: vantdpagination,
-      selected_model: mb.instance( 'Schools'),
+      selected_model: mb.instance('Schools'),
       show_modal_form: false,
       mb
-    };
+    }
   },
   components: {
     action_buttons,
@@ -167,41 +167,41 @@ export default {
     schools_form
   },
   watch: {
-    filter: function() {
-      this.data = this.schools_list.data.filter(this.filter_data);
+    filter: function () {
+      this.data = this.schools_list.data.filter(this.filter_data)
     },
-    selectedRowKeys: function() {
+    selectedRowKeys: function () {
       if (this.selectedRowKeys.length == this.data.length) {
-        this.text_select = "Desseleccionar todo";
+        this.text_select = 'Desseleccionar todo'
       } else {
-        this.text_select = "Seleccionar todo";
+        this.text_select = 'Seleccionar todo'
       }
     }
   },
   computed: {
-    rowSelection() {
-      const { selectedRowKeys } = this;
+    rowSelection () {
+      const { selectedRowKeys } = this
       return {
         selectedRowKeys,
         hideDefaultSelections: true,
         selections: [
           {
-            key: "all-data",
+            key: 'all-data',
             text: this.text_select,
             onSelect: () => {
               if (this.selectedRowKeys.length == this.data.length) {
-                this.selectedRowKeys = [];
+                this.selectedRowKeys = []
               } else {
                 this.selectedRowKeys = this.data.map(e => {
-                  return e.id_school;
-                });
+                  return e.id_school
+                })
               }
             }
           }
         ],
         onSelection: this.onSelection,
         onChange: this.onChange
-      };
+      }
     }
   },
   methods: {
@@ -211,90 +211,88 @@ export default {
     exportToCSV () {
       utils.exportToCSV(this)
     },
-    onCloseModal(e,reload_data=false) {
-      this.selected_model = mb.instance('Schools');
-      this.show_modal_form = false;
-      reload_data?this.load_data():''
+    onCloseModal (e, reload_data = false) {
+      this.selected_model = mb.instance('Schools')
+      this.show_modal_form = false
+      reload_data ? this.load_data() : ''
     },
-    showModalForm() {
-      this.show_modal_form = !this.show_modal_form;
+    showModalForm () {
+      this.show_modal_form = !this.show_modal_form
     },
-    filter_data(object) {
-      return utils.filter_object_column(object, this.filter,this.columns);
+    filter_data (object) {
+      return utils.filter_object_column(object, this.filter, this.columns)
     },
-    onChange: function(selectedRowKeys) {
-      this.selectedRowKeys = selectedRowKeys;
+    onChange: function (selectedRowKeys) {
+      this.selectedRowKeys = selectedRowKeys
     },
-    showDeleteConfirm() {
+    showDeleteConfirm () {
       if (this.selectedRowKeys.length == 0) {
         utils.openNotificationWithIcon(
-          "error",
-          "Eliminar elementos seleccionados",
-          "Debe seleccionar al menos u elemento"
-        );
-        return;
+          'error',
+          'Eliminar elementos seleccionados',
+          'Debe seleccionar al menos u elemento'
+        )
+        return
       }
-      let _this = this;
+      let _this = this
       this.$confirm({
-        title: "Eliminar elementos seleccionados?",
-        icon: "delete",
+        title: 'Eliminar elementos seleccionados?',
+        icon: 'delete',
         // icon:()=>{return ( <a-icon type="delete" style="color:red"/> )},
-        okText: "Si",
-        okType: "danger",
-        class: "delete_confirm",
-        cancelText: "No",
-        async onOk() {
+        okText: 'Si',
+        okType: 'danger',
+        class: 'delete_confirm',
+        cancelText: 'No',
+        async onOk () {
           try {
             const response = await mb.statics('Schools').delete_by_ids(
-                _this.selectedRowKeys
-              );
-               utils.process_response(response, "deleted");
-              _this.selectedRowKeys=[];
-              _this.load_data();
-            } catch (error) {
-              utils.process_error(error);
-              _this.selectedRowKeys=[];
-            }
+              _this.selectedRowKeys
+            )
+            utils.process_response(response, 'deleted')
+            _this.selectedRowKeys = []
+            _this.load_data()
+          } catch (error) {
+            utils.process_error(error)
+            _this.selectedRowKeys = []
+          }
         },
-        onCancel() {}
-      });
+        onCancel () {}
+      })
     },
-    async load_data() {
+    async load_data () {
       try {
-        this.loading = true;
-        var params = {};
-        params.relations=['country'];
+        this.loading = true
+        var params = {}
+        params.relations = ['country']
 
-        const resp = await mb.statics('Schools').list(params);
-        this.schools_list = resp;
-        this.data = this.schools_list.data.filter(this.filter_data);
-        this.loading = false;
+        const resp = await mb.statics('Schools').list(params)
+        this.schools_list = resp
+        this.data = this.schools_list.data.filter(this.filter_data)
+        this.loading = false
       } catch (error) {
-        utils.process_error(error);
-        this.loading = false;
+        utils.process_error(error)
+        this.loading = false
       }
     },
 
-
-    onEditing(model) {
-      this.selected_model = mb.instance('Schools',model);
-      this.showModalForm();
+    onEditing (model) {
+      this.selected_model = mb.instance('Schools', model)
+      this.showModalForm()
     }
   },
 
-  mounted() {
-    this.loading = true;
-    this.data = [];
-    this.load_data();
-    this.self = this;
+  mounted () {
+    this.loading = true
+    this.data = []
+    this.load_data()
+    this.self = this
     this.pagination.$options.props = {
       load_data: this.load_data
-    };
+    }
   }
-};
+}
 </script>
 
 <style>
 @import "schools_list.css";
 </style>
-

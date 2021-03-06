@@ -25,8 +25,8 @@ export default class Permissions extends BaseModel {
          super()
          if (attributes != null) {
            this.id_permission = attributes.id_permission || undefined
-           this.permission_name = attributes.permission_name || null
-           this.permission_description = attributes.permission_description || null
+           this.permission_name = attributes.permission_name || ''
+           this.permission_description = attributes.permission_description || ''
          }
        }
 

@@ -29,12 +29,12 @@ export default class Users extends BaseModel {
          super()
          if (attributes != null) {
            this.id_user = attributes.id_user || undefined
-           this.user_first_name = attributes.user_first_name || null
-           this.user_last_name = attributes.user_last_name || null
-           this.user_email = attributes.user_email || null
-           this.user_phone = attributes.user_phone || null
-           this.user_password = attributes.user_password || null
-           this.role_id = attributes.role_id || null
+           this.user_first_name = attributes.user_first_name || ''
+           this.user_last_name = attributes.user_last_name || ''
+           this.user_email = attributes.user_email || ''
+           this.user_phone = attributes.user_phone || ''
+           this.user_password = attributes.user_password || ''
+           this.role_id = attributes.role_id || ''
          }
        }
 

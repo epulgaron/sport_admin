@@ -33,16 +33,16 @@ export default class Tests extends BaseModel {
          super()
          if (attributes != null) {
            this.id_test = attributes.id_test || undefined
-           this.test_name = attributes.test_name || null
-           this.test_date = attributes.test_date ? moment(attributes.test_date).format('YYYY-MM-DD') : null
-           this.test_date = attributes.test_date || null
-           this.flow_id = attributes.flow_id || null
-           this.sport_id = attributes.sport_id || null
-           this.type_id = attributes.type_id || null
-           this.school_id = attributes.school_id || null
-           this.status_id = attributes.status_id || null
-           this.final_date = attributes.final_date ? moment(attributes.final_date).format('YYYY-MM-DD') : null
-           this.final_date = attributes.final_date || null
+           this.test_name = attributes.test_name || ''
+           this.test_date = attributes.test_date ? moment(attributes.test_date).format('YYYY-MM-DD') : ''
+           this.test_date = attributes.test_date || ''
+           this.flow_id = attributes.flow_id || ''
+           this.sport_id = attributes.sport_id || ''
+           this.type_id = attributes.type_id || ''
+           this.school_id = attributes.school_id || ''
+           this.status_id = attributes.status_id || ''
+           this.final_date = attributes.final_date ? moment(attributes.final_date).format('YYYY-MM-DD') : ''
+           this.final_date = attributes.final_date || ''
          }
        }
 

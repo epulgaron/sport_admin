@@ -73,107 +73,102 @@
 </template>
 
 <script>
-import Users from "../../../../../entities/models/modules/security/users.model";
-import * as utils from "../../../../../entities/utils/utils";
-import * as mb from "../../../../../entities/models"
-  import Roles_form from '../../roles/form/roles_form';
+import Users from '../../../../../entities/models/modules/security/users.model'
+import * as utils from '../../../../../entities/utils/utils'
+import * as mb from '../../../../../entities/models'
+import Roles_form from '../../roles/form/roles_form'
 
 export default {
-  name: "users_form",
+  name: 'users_form',
   inject: {
-      close_modal: { default: ()=>{} },
-      load_data: {default: () => {} }
+    close_modal: { default: () => {} },
+    load_data: {default: () => {} }
   },
   props: {
     model: {
       type: Object,
       default: () => {}
     },
-      modal: {
-        type: Boolean,
-        default: false
-      },
+    modal: {
+      type: Boolean,
+      default: false
+    },
     popoverPlacement: {
       type: String,
-      default: "bottomLeft"
+      default: 'bottomLeft'
     }
   },
   validations: mb.statics('Users').validations,
-  data() {
+  data () {
     return {
       loading: false,
-      mb,      // This property is for load static or instance class
-      users: mb.instance( 'Users'),
+      mb, // This property is for load static or instance class
+      users: mb.instance('Users'),
       showModalCreaterole: false,
-      roles_list: [],
-    };
+      roles_list: []
+    }
   },
   computed: {
-    usersFeedbacks() {
-      return mb.statics('Users').feedbacks;
+    usersFeedbacks () {
+      return mb.statics('Users').feedbacks
     },
-    button_text() {
-      return this.users.get_id() ? "Actualizar" : "Añadir";
-    },
+    button_text () {
+      return this.users.get_id() ? 'Actualizar' : 'Añadir'
+    }
   },
 
-  mounted: function() {
-    this.users = mb.instance( 'Users',this.model);
-
+  mounted: function () {
+    this.users = mb.instance('Users', this.model)
   },
   components: {
 
-       Roles_form,
-             },
+    Roles_form
+  },
   methods: {
-      openModalCreaterole() {
-        this.showModalCreaterole = true;
-      },
-      roleAdded(refresh) {
-        this.showModalCreaterole = false;
-        refresh?this.refreshrole():'';
-      },
-      async refreshrole() {
-        this.loading = true;
-        await this.$refs.select_role.load();
-        this.loading = false;
-      },
-      cancel(){
-        if (!this.model) {
-          this.$emit('close_modal',false)
-        } else {
-        this.modal?this.close_modal(null,false):this.$router.push({name: 'users_list'})
-       }
-      },
-    save_model(and_new=false) {
+    openModalCreaterole () {
+      this.showModalCreaterole = true
+    },
+    roleAdded (refresh) {
+      this.showModalCreaterole = false
+      refresh ? this.refreshrole() : ''
+    },
+    async refreshrole () {
+      this.loading = true
+      await this.$refs.select_role.load()
+      this.loading = false
+    },
+    cancel () {
+      if (!this.model) {
+        this.$emit('close_modal', false)
+      } else {
+        this.modal ? this.close_modal(null, false) : this.$router.push({name: 'users_list'})
+      }
+    },
+    save_model (and_new = false) {
       if (this.$refs.form.validate()) {
-        this.loading = true;
-        const accion=this.users.get_id() ? "actualizado" : "añadido";
+        this.loading = true
+        const accion = this.users.get_id() ? 'actualizado' : 'añadido'
         this.users
           .save()
           .then((response) => {
-            if(utils.process_response(response,accion)) {
+            if (utils.process_response(response, accion)) {
               if (!this.model && !and_new && this.modal) {
-
-                  this.$emit('close_modal',true)
-                  return;
-               }
-                else
-                   !and_new?this.modal?this.close_modal(null,true):this.$router.push({name: 'users_list'}):this.users=mb.instance('Users');this.load_data();this.$refs.form.vobject.$reset()
+                this.$emit('close_modal', true)
+                return
+              } else { !and_new ? this.modal ? this.close_modal(null, true) : this.$router.push({name: 'users_list'}) : this.users = mb.instance('Users') } this.load_data(); this.$refs.form.vobject.$reset()
             }
-            this.loading = false;
+            this.loading = false
           })
           .catch((error) => {
-            this.loading = false;
-            utils.process_error(error);
-          });
+            this.loading = false
+            utils.process_error(error)
+          })
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
 @import "users_form.css";
 </style>
-

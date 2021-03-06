@@ -12,7 +12,7 @@
       >
       <tc-form-item class="form-group mb-0 col-md-6 px-3">
         <label>Error_level_name<span class='required_field'>*</span></label>
-        <tc-input placeholder='Ingrese el valor'   type_car='num'  name='error_level_name' v-model="error_level.error_level_name"></tc-input>
+        <tc-input placeholder='Ingrese el valor'   name='error_level_name' v-model="error_level.error_level_name"></tc-input>
       </tc-form-item>
       <tc-form-item class="form-group mb-0 col-md-6 px-3">
         <label>Error_level_eval<span class='required_field'>*</span></label>

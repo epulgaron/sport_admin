@@ -26,9 +26,9 @@ export default class Flows extends BaseModel {
          super()
          if (attributes != null) {
            this.id_flow = attributes.id_flow || undefined
-           this.flow_acr = attributes.flow_acr || null
-           this.flow_name = attributes.flow_name || null
-           this.flow_description = attributes.flow_description || null
+           this.flow_acr = attributes.flow_acr || ''
+           this.flow_name = attributes.flow_name || ''
+           this.flow_description = attributes.flow_description || ''
          }
        }
 

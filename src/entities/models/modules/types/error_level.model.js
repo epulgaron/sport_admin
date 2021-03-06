@@ -27,10 +27,10 @@ export default class Error_level extends BaseModel {
          super()
          if (attributes != null) {
            this.id_error_level = attributes.id_error_level || undefined
-           this.error_level_name = attributes.error_level_name || null
-           this.error_level_eval = attributes.error_level_eval || null
-           this.school_id = attributes.school_id || null
-           this.sport_id = attributes.sport_id || null
+           this.error_level_name = attributes.error_level_name || ''
+           this.error_level_eval = attributes.error_level_eval || ''
+           this.school_id = attributes.school_id || ''
+           this.sport_id = attributes.sport_id || ''
          }
        }
 

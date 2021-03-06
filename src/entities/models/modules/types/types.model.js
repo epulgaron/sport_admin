@@ -25,8 +25,8 @@ export default class Types extends BaseModel {
          super()
          if (attributes != null) {
            this.id_type = attributes.id_type || undefined
-           this.type_acr = attributes.type_acr || null
-           this.type_name = attributes.type_name || null
+           this.type_acr = attributes.type_acr || ''
+           this.type_name = attributes.type_name || ''
          }
        }
 

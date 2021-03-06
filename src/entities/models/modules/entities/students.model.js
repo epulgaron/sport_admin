@@ -39,19 +39,19 @@ export default class Students extends Users {
          super(attributes)
          if (attributes != null) {
            this.user_id = attributes.user_id || undefined
-           this.student_address1 = attributes.student_address1 || null
-           this.student_address2 = attributes.student_address2 || null
-           this.student_city = attributes.student_city || null
-           this.student_state = attributes.student_state || null
-           this.student_zip_code = attributes.student_zip_code || null
-           this.student_dob = attributes.student_dob ? moment(attributes.student_dob).format('YYYY-MM-DD') : null
-           this.student_dob = attributes.student_dob || null
-           this.student_picture = attributes.student_picture || null
+           this.student_address1 = attributes.student_address1 || ''
+           this.student_address2 = attributes.student_address2 || ''
+           this.student_city = attributes.student_city || ''
+           this.student_state = attributes.student_state || ''
+           this.student_zip_code = attributes.student_zip_code || ''
+           this.student_dob = attributes.student_dob ? moment(attributes.student_dob).format('YYYY-MM-DD') : ''
+           this.student_dob = attributes.student_dob || ''
+           this.student_picture = attributes.student_picture || ''
            this.student_legal_age = attributes.student_legal_age == '1'
-           this.student_tutor_first_name = attributes.student_tutor_first_name || null
-           this.student_tutor_last_name = attributes.student_tutor_last_name || null
-           this.studen_tutor_email = attributes.studen_tutor_email || null
-           this.school_id = attributes.school_id || null
+           this.student_tutor_first_name = attributes.student_tutor_first_name || ''
+           this.student_tutor_last_name = attributes.student_tutor_last_name || ''
+           this.studen_tutor_email = attributes.studen_tutor_email || ''
+           this.school_id = attributes.school_id || ''
          }
        }
 

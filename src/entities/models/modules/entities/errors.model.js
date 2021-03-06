@@ -25,8 +25,8 @@ export default class Errors extends BaseModel {
          super()
          if (attributes != null) {
            this.id_error = attributes.id_error || undefined
-           this.error_name = attributes.error_name || null
-           this.recomendacion = attributes.recomendacion || null
+           this.error_name = attributes.error_name || ''
+           this.recomendacion = attributes.recomendacion || ''
          }
        }
 

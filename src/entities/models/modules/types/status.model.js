@@ -25,8 +25,8 @@ export default class Status extends BaseModel {
          super()
          if (attributes != null) {
            this.id_status = attributes.id_status || undefined
-           this.status_acr = attributes.status_acr || null
-           this.status_name = attributes.status_name || null
+           this.status_acr = attributes.status_acr || ''
+           this.status_name = attributes.status_name || ''
          }
        }
 

@@ -25,8 +25,8 @@ export default class Roles extends BaseModel {
          super()
          if (attributes != null) {
            this.id_role = attributes.id_role || undefined
-           this.role_name = attributes.role_name || null
-           this.role_description = attributes.role_description || null
+           this.role_name = attributes.role_name || ''
+           this.role_description = attributes.role_description || ''
          }
        }
 

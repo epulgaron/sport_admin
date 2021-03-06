@@ -24,7 +24,7 @@ export default class Sports extends BaseModel {
          super()
          if (attributes != null) {
            this.id_sport = attributes.id_sport || undefined
-           this.sport_name = attributes.sport_name || null
+           this.sport_name = attributes.sport_name || ''
          }
        }
 

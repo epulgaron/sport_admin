@@ -10,6 +10,23 @@
         ref="form"
         class="form-row"
       >
+      <tc-form-item style="text-align: left" class="form-group mb-0 col-md-6 px-3">
+        <label >Logo</label>
+        <a-upload
+          name="avatar"
+          listType="picture-card"
+          class="avatar-uploader"
+          style="display: inline-table"
+          :showUploadList="false"
+          @change="handleImageChange"
+        >
+          <img id="school_logo" height="102px" width="102px" v-show="schools.school_logo" :src="mb.statics('Schools').getImageURL(schools.school_logo)" alt="Image"/>
+          <div v-if="!schools.school_logo">
+            <a-icon :type="loading ? 'loading' : 'plus'"/>
+            <div class="ant-upload-text">Upload</div>
+          </div>
+        </a-upload>
+      </tc-form-item>
       <tc-form-item class="form-group mb-0 col-md-6 px-3">
         <label>School_name<span class='required_field'>*</span></label>
         <tc-input placeholder='Ingrese el valor' name='school_name' v-model="schools.school_name"></tc-input>
@@ -74,10 +91,6 @@
         <label>School_zip_code</label>
         <tc-input placeholder='Ingrese el valor'   type_car='num'  name='school_zip_code' v-model="schools.school_zip_code"></tc-input>
       </tc-form-item>
-      <tc-form-item class="form-group mb-0 col-md-6 px-3">
-        <label>School_logo</label>
-        <tc-input placeholder='Ingrese el valor' name='school_logo' v-model="schools.school_logo"></tc-input>
-      </tc-form-item>
       </tc-form>
     </div>
     <div class="card-footer p-0">
@@ -89,107 +102,110 @@
 </template>
 
 <script>
-import Schools from "../../../../../entities/models/modules/entities/schools.model";
-import * as utils from "../../../../../entities/utils/utils";
-import * as mb from "../../../../../entities/models"
-  import Countries_form from '../../../types/countries/form/countries_form';
+import Schools from '../../../../../entities/models/modules/entities/schools.model'
+import * as utils from '../../../../../entities/utils/utils'
+import * as mb from '../../../../../entities/models'
+import Countries_form from '../../../types/countries/form/countries_form'
 
 export default {
-  name: "schools_form",
+  name: 'schools_form',
   inject: {
-      close_modal: { default: ()=>{} },
-      load_data: {default: () => {} }
+    close_modal: { default: () => {} },
+    load_data: {default: () => {} }
   },
   props: {
     model: {
       type: Object,
       default: () => {}
     },
-      modal: {
-        type: Boolean,
-        default: false
-      },
+    modal: {
+      type: Boolean,
+      default: false
+    },
     popoverPlacement: {
       type: String,
-      default: "bottomLeft"
+      default: 'bottomLeft'
     }
   },
   validations: mb.statics('Schools').validations,
-  data() {
+  data () {
     return {
       loading: false,
-      mb,      // This property is for load static or instance class
-      schools: mb.instance( 'Schools'),
+      mb, // This property is for load static or instance class
+      schools: mb.instance('Schools'),
       showModalCreatecountry: false,
-      countries_list: [],
-    };
+      countries_list: []
+    }
   },
   computed: {
-    schoolsFeedbacks() {
-      return mb.statics('Schools').feedbacks;
+    schoolsFeedbacks () {
+      return mb.statics('Schools').feedbacks
     },
-    button_text() {
-      return this.schools.get_id() ? "Actualizar" : "Añadir";
-    },
+    button_text () {
+      return this.schools.get_id() ? 'Actualizar' : 'Añadir'
+    }
   },
 
-  mounted: function() {
-    this.schools = mb.instance( 'Schools',this.model);
-
+  mounted: function () {
+    this.schools = mb.instance('Schools', this.model)
   },
   components: {
 
-       Countries_form,
-             },
+    Countries_form
+  },
   methods: {
-      openModalCreatecountry() {
-        this.showModalCreatecountry = true;
-      },
-      countryAdded(refresh) {
-        this.showModalCreatecountry = false;
-        refresh?this.refreshcountry():'';
-      },
-      async refreshcountry() {
-        this.loading = true;
-        await this.$refs.select_country.load();
-        this.loading = false;
-      },
-      cancel(){
-        if (!this.model) {
-          this.$emit('close_modal',false)
-        } else {
-        this.modal?this.close_modal(null,false):this.$router.push({name: 'schools_list'})
-       }
-      },
-    save_model(and_new=false) {
+    handleImageChange (info) {
+      let reader = new FileReader()
+      reader.onload = function (e) {
+        document.getElementById('school_logo').setAttribute('src', e.target.result)
+      }
+      reader.readAsDataURL(info.file)
+      this.schools.school_logo = info.file
+    },
+    openModalCreatecountry () {
+      this.showModalCreatecountry = true
+    },
+    countryAdded (refresh) {
+      this.showModalCreatecountry = false
+      refresh ? this.refreshcountry() : ''
+    },
+    async refreshcountry () {
+      this.loading = true
+      await this.$refs.select_country.load()
+      this.loading = false
+    },
+    cancel () {
+      if (!this.model) {
+        this.$emit('close_modal', false)
+      } else {
+        this.modal ? this.close_modal(null, false) : this.$router.push({name: 'schools_list'})
+      }
+    },
+    save_model (and_new = false) {
       if (this.$refs.form.validate()) {
-        this.loading = true;
-        const accion=this.schools.get_id() ? "actualizado" : "añadido";
+        this.loading = true
+        const accion = this.schools.get_id() ? 'actualizado' : 'añadido'
         this.schools
           .save()
           .then((response) => {
-            if(utils.process_response(response,accion)) {
+            if (utils.process_response(response, accion)) {
               if (!this.model && !and_new && this.modal) {
-
-                  this.$emit('close_modal',true)
-                  return;
-               }
-                else
-                   !and_new?this.modal?this.close_modal(null,true):this.$router.push({name: 'schools_list'}):this.schools=mb.instance('Schools');this.load_data();this.$refs.form.vobject.$reset()
+                this.$emit('close_modal', true)
+                return
+              } else { !and_new ? this.modal ? this.close_modal(null, true) : this.$router.push({name: 'schools_list'}) : this.schools = mb.instance('Schools') } this.load_data(); this.$refs.form.vobject.$reset()
             }
-            this.loading = false;
+            this.loading = false
           })
           .catch((error) => {
-            this.loading = false;
-            utils.process_error(error);
-          });
+            this.loading = false
+            utils.process_error(error)
+          })
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
 @import "schools_form.css";
 </style>
-

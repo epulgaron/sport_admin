@@ -27,10 +27,10 @@ export default class Contents extends BaseModel {
          super()
          if (attributes != null) {
            this.id_content = attributes.id_content || undefined
-           this.content_name = attributes.content_name || null
-           this.content_description = attributes.content_description || null
-           this.sport_id = attributes.sport_id || null
-           this.session_id = attributes.session_id || null
+           this.content_name = attributes.content_name || ''
+           this.content_description = attributes.content_description || ''
+           this.sport_id = attributes.sport_id || ''
+           this.session_id = attributes.session_id || ''
          }
        }
 

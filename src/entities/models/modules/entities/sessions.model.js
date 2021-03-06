@@ -25,8 +25,8 @@ export default class Sessions extends BaseModel {
          super()
          if (attributes != null) {
            this.id_session = attributes.id_session || undefined
-           this.session_name = attributes.session_name || null
-           this.sport_id = attributes.sport_id || null
+           this.session_name = attributes.session_name || ''
+           this.sport_id = attributes.sport_id || ''
          }
        }
 

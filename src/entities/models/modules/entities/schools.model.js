@@ -33,16 +33,16 @@ export default class Schools extends BaseModel {
          super()
          if (attributes != null) {
            this.id_school = attributes.id_school || undefined
-           this.school_name = attributes.school_name || null
-           this.school_email = attributes.school_email || null
-           this.school_phone = attributes.school_phone || null
-           this.school_address1 = attributes.school_address1 || null
-           this.school_address2 = attributes.school_address2 || null
-           this.school_city = attributes.school_city || null
-           this.school_state = attributes.school_state || null
-           this.country_id = attributes.country_id || null
-           this.school_zip_code = attributes.school_zip_code || null
-           this.school_logo = attributes.school_logo || null
+           this.school_name = attributes.school_name || ''
+           this.school_email = attributes.school_email || ''
+           this.school_phone = attributes.school_phone || ''
+           this.school_address1 = attributes.school_address1 || ''
+           this.school_address2 = attributes.school_address2 || ''
+           this.school_city = attributes.school_city || ''
+           this.school_state = attributes.school_state || ''
+           this.country_id = attributes.country_id || ''
+           this.school_zip_code = attributes.school_zip_code || ''
+           this.school_logo = attributes != '' ? attributes.school_logo || 'school.jpg' : 'school.jpg'
          }
        }
 
@@ -114,8 +114,13 @@ export default class Schools extends BaseModel {
           maxLength: maxLength(11)
         },
         school_logo: {
+          maxLength: maxLength(50)
         }
       }
+    }
+
+    static getImageURL (school_logo) {
+      return process.env.BASE_URL + 'assets/schools/' + school_logo
     }
 
     static feedbacks = {
@@ -137,8 +142,18 @@ export default class Schools extends BaseModel {
 
   static columns = [
     {
+      title: 'Logo',
+      key: 'school_logo',
+      scopedSlots: {customRender: 'school_logo'},
+      width: '7%',
+      align: 'center',
+
+      sorter: (a, b) => (a.school_logo > b.school_logo) - (a.school_logo < b.school_logo)
+    },
+    {
       title: 'Name',
       dataIndex: 'school_name',
+      width: '17%',
       align: 'center',
       key: 'school_name',
 
@@ -147,6 +162,7 @@ export default class Schools extends BaseModel {
     {
       title: 'Email',
       dataIndex: 'school_email',
+      width: '15%',
       align: 'center',
       key: 'school_email',
 
@@ -155,6 +171,7 @@ export default class Schools extends BaseModel {
     {
       title: 'Phone',
       dataIndex: 'school_phone',
+      width: '12%',
       align: 'center',
       key: 'school_phone',
 
@@ -163,6 +180,7 @@ export default class Schools extends BaseModel {
     {
       title: 'Address 1',
       dataIndex: 'school_address1',
+      width: '15%',
       align: 'center',
       key: 'school_address1',
 
@@ -207,14 +225,6 @@ export default class Schools extends BaseModel {
       key: 'school_zip_code',
 
       sorter: (a, b) => a.school_zip_code - b.school_zip_code
-    },
-    {
-      title: 'Logo',
-      dataIndex: 'school_logo',
-      align: 'center',
-      key: 'school_logo',
-
-      sorter: (a, b) => (a.school_logo > b.school_logo) - (a.school_logo < b.school_logo)
     },
     {
       title: 'Actions',

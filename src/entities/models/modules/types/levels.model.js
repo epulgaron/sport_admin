@@ -26,9 +26,9 @@ export default class Levels extends BaseModel {
          super()
          if (attributes != null) {
            this.id_level = attributes.id_level || undefined
-           this.level_acr = attributes.level_acr || null
-           this.level_name = attributes.level_name || null
-           this.sport_id = attributes.sport_id || null
+           this.level_acr = attributes.level_acr || ''
+           this.level_name = attributes.level_name || ''
+           this.sport_id = attributes.sport_id || ''
          }
        }
 

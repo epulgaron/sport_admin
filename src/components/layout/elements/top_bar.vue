@@ -627,30 +627,30 @@
 </template>
 
 <script>
-  import * as mb from '../../../entities/models'
+import * as mb from '../../../entities/models'
 
-  export default {
-    name: "topbar",
-    inject: {
-      logout: { default: ()=>{} }
-    },
-    data(){
-      return {
-        mb,
-        user:{},
-        image:null
-      }
-    },
-    methods:{
-      logout_action(){
-        this.logout()
-      }
-    },
-    mounted () {
-      this.user=this.$store.site.user;
-      this.image=mb.statics('Users').getImageURL(this.user.image)
+export default {
+  name: 'topbar',
+  inject: {
+    logout: { default: () => {} }
+  },
+  data () {
+    return {
+      mb,
+      user: {},
+      image: null
     }
+  },
+  methods: {
+    logout_action () {
+      this.logout()
+    }
+  },
+  mounted () {
+    this.user = this.$store.site.user
+    this.image = mb.statics('Users').getImageURL(this.user.image)
   }
+}
 </script>
 
 <style scoped>

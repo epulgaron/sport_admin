@@ -25,8 +25,8 @@ export default class Countries extends BaseModel {
          super()
          if (attributes != null) {
            this.id_country = attributes.id_country || undefined
-           this.country_acr = attributes.country_acr || null
-           this.country_name = attributes.country_name || null
+           this.country_acr = attributes.country_acr || ''
+           this.country_name = attributes.country_name || ''
          }
        }
 

@@ -29,91 +29,86 @@
 </template>
 
 <script>
-import Countries from "../../../../../entities/models/modules/types/countries.model";
-import * as utils from "../../../../../entities/utils/utils";
-import * as mb from "../../../../../entities/models"
+import Countries from '../../../../../entities/models/modules/types/countries.model'
+import * as utils from '../../../../../entities/utils/utils'
+import * as mb from '../../../../../entities/models'
 
 export default {
-  name: "countries_form",
+  name: 'countries_form',
   inject: {
-      close_modal: { default: ()=>{} },
-      load_data: {default: () => {} }
+    close_modal: { default: () => {} },
+    load_data: {default: () => {} }
   },
   props: {
     model: {
       type: Object,
       default: () => {}
     },
-      modal: {
-        type: Boolean,
-        default: false
-      },
+    modal: {
+      type: Boolean,
+      default: false
+    },
     popoverPlacement: {
       type: String,
-      default: "bottomLeft"
+      default: 'bottomLeft'
     }
   },
   validations: mb.statics('Countries').validations,
-  data() {
+  data () {
     return {
       loading: false,
-      mb,      // This property is for load static or instance class
-      countries: mb.instance( 'Countries'),
-    };
+      mb, // This property is for load static or instance class
+      countries: mb.instance('Countries')
+    }
   },
   computed: {
-    countriesFeedbacks() {
-      return mb.statics('Countries').feedbacks;
+    countriesFeedbacks () {
+      return mb.statics('Countries').feedbacks
     },
-    button_text() {
-      return this.countries.get_id() ? "Actualizar" : "Añadir";
-    },
+    button_text () {
+      return this.countries.get_id() ? 'Update' : 'Add'
+    }
   },
 
-  mounted: function() {
-    this.countries = mb.instance( 'Countries',this.model);
-
+  mounted: function () {
+    this.countries = mb.instance('Countries', this.model)
   },
   components: {
 
-             },
+  },
   methods: {
-      cancel(){
-        if (!this.model) {
-          this.$emit('close_modal',false)
-        } else {
-        this.modal?this.close_modal(null,false):this.$router.push({name: 'countries_list'})
-       }
-      },
-    save_model(and_new=false) {
+    cancel () {
+      if (!this.model) {
+        this.$emit('close_modal', false)
+      } else {
+        this.modal ? this.close_modal(null, false) : this.$router.push({name: 'countries_list'})
+      }
+    },
+    save_model (and_new = false) {
       if (this.$refs.form.validate()) {
-        this.loading = true;
-        const accion=this.countries.get_id() ? "actualizado" : "añadido";
+        this.loading = true
+        const accion = this.countries.get_id() ? 'actualizado' : 'añadido'
         this.countries
           .save()
           .then((response) => {
-            if(utils.process_response(response,accion)) {
+            if (utils.process_response(response, accion)) {
               if (!this.model && !and_new && this.modal) {
-
-                  this.$emit('close_modal',true)
-                  return;
-               }
-                else
-                   !and_new?this.modal?this.close_modal(null,true):this.$router.push({name: 'countries_list'}):this.countries=mb.instance('Countries');this.load_data();this.$refs.form.vobject.$reset()
+                this.$emit('close_modal', true)
+                return
+              } else { !and_new ? this.modal ? this.close_modal(null, true) : this.$router.push({name: 'countries_list'}) : this.countries = mb.instance('Countries') } this.load_data(); this.$refs.form.vobject.$reset()
             }
-            this.loading = false;
+            this.loading = false
           })
           .catch((error) => {
-            this.loading = false;
-            utils.process_error(error);
-          });
+            this.loading = false
+            utils.process_error(error)
+          })
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
 @import "countries_form.css";
 </style>
-

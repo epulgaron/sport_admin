@@ -28,8 +28,8 @@ export default class Teachers extends Users {
          super(attributes)
          if (attributes != null) {
            this.user_id = attributes.user_id || undefined
-           this.teacher_address = attributes.teacher_address || null
-           this.school_id = attributes.school_id || null
+           this.teacher_address = attributes.teacher_address || ''
+           this.school_id = attributes.school_id || ''
            this.external = attributes.external == '1'
          }
        }
